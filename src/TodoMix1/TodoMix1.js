@@ -10,7 +10,7 @@ import { VisibilityFilters } from '../TodoShared/TodoShared'
 
 import { addTodo } from './TodoReducer1'
 import { toggleTodo } from './TodoReducer1'
-import { setVisibilityFilter } from './TodoReducer1'
+import { setVisibilityFilter } from './TodoVisibilityFilterReducer1'
 
 export const TodoMix1 = () => {
   return(
@@ -51,11 +51,11 @@ const mapStateToPropsTodoList = state => ({
   todos: getVisibleTodos(state.todoList1, state.todoVisibilityFilter1)
 })
 
-const mapDispatchToPropsTodoList = dispatch => ({
-  toggleTodo: id => dispatch(toggleTodo(id))
-})
+const mapDispatchToPropsTodoList = {
+  toggleTodo
+}
 
-const ConTodoList = connect(mapStateToPropsTodoList, 
+const ConTodoList = connect(mapStateToPropsTodoList,
   mapDispatchToPropsTodoList)(TodoList);
 
 class NewTodoItem extends React.Component {
@@ -64,11 +64,11 @@ class NewTodoItem extends React.Component {
       super(props);
       this.onSubmit = this.onSubmit.bind(this);
     }
-  
+
     componentDidMount(){
       ReactDOM.findDOMNode(this.refs.itemName).focus();
     }
-  
+
     render(){
       return (
       <form onSubmit={this.onSubmit}>
@@ -76,7 +76,7 @@ class NewTodoItem extends React.Component {
         <input type="submit" value="Submit" />
       </form>);
     }
-  
+
     onSubmit(event){
       event.preventDefault();
       var input = ReactDOM.findDOMNode(this.refs.itemName)
@@ -84,7 +84,7 @@ class NewTodoItem extends React.Component {
       this.props.dispatch(addTodo(newItem))
       input.value = '';
     }
-    
+
   }
 
 const ConNewTodoItem = connect()(NewTodoItem);

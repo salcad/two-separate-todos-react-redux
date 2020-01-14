@@ -5,8 +5,8 @@ import { Provider } from 'react-redux'
 import { combineReducers } from 'redux'
 
 import { TodoMix1 } from './TodoMix1/TodoMix1';
-import { todoList1 } from './TodoMix1/TodoReducer1'
-import { todoVisibilityFilter1 } from './TodoMix1/TodoReducer1'
+import todoList1 from './TodoMix1/TodoReducer1'
+import todoVisibilityFilter1 from './TodoMix1/TodoVisibilityFilterReducer1'
 
 import { TodoMix2 } from './TodoMix2/TodoMix2';
 import { todoList2 } from './TodoMix2/TodoReducer2'
@@ -25,7 +25,7 @@ const store = createStore(todoReducer)
 
 const Root = () => {
   return (
-    <div> 
+    <div>
     <TodoMix1 />
     <TodoMix2 />
   </div>

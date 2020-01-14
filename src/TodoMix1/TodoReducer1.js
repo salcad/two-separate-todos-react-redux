@@ -1,53 +1,47 @@
 
-import { VisibilityFilters } from '../TodoShared/TodoShared'
+import { createAction } from 'redux-actions';
+import typeToReducer from 'type-to-reducer';
 
-let nextTodoId = 0
-export const addTodo = text => ({
-  type: '[todo1] ADD_TODO',
+
+const ADD_TODO = '[todo1] ADD_TODO';
+const TOGGLE_TODO = '[todo1] TOGGLE_TODO';
+
+let nextTodoId = 0;
+export const addTodo = createAction(ADD_TODO, ( text ) => ({
   id: nextTodoId++,
   text
-})
-
-export const toggleTodo = id => ({
-  type: '[todo1] TOGGLE_TODO',
+}));
+export const toggleTodo = createAction(TOGGLE_TODO, ( id ) => ({
   id
-})
+}));
 
-export const todoList1 = (state = [], action) => {
-    switch (action.type) {
-      case '[todo1] ADD_TODO':
-        return [
-          ...state,
-          {
-            id: action.id,
-            text: action.text,
-            completed: false
-          }
-        ]
-      case '[todo1] TOGGLE_TODO':
-        return state.map(todo =>
-          (todo.id === action.id)
-            ? {...todo, completed: !todo.completed}
-            : todo
-        )
-      default:
-        return state
+const addTodoHandler =  (state, action) => {
+  return [
+    ...state,
+    {
+      id: action.payload.id,
+      text: action.payload.text,
+      completed: false
     }
-  }
-  
-  export const setVisibilityFilter = filter => ({
-    type: '[todo1] SET_VISIBILITY_FILTER',
-    filter
-  })
+  ]
+};
 
-    
-  export const todoVisibilityFilter1 = (state = VisibilityFilters.SHOW_ALL, action) => {
-      switch (action.type) {
-        case '[todo1] SET_VISIBILITY_FILTER':
-          return action.filter
-        default:
-          return state
-      }
-  }
+const toggleTodoHandler =  (state, action) => {
+  return state.map(todo =>
+    (todo.id === action.payload.id)
+      ? {...todo, completed: !todo.completed}
+      : todo
+  )
+};
 
-  
+export const initialState = [];
+
+export default typeToReducer({
+  [addTodo]: addTodoHandler,
+  [toggleTodo]: toggleTodoHandler,
+}, initialState);
+
+
+
+
+
