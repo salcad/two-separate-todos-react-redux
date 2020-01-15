@@ -4,13 +4,13 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { combineReducers } from 'redux'
 
-import { TodoMix1 } from './TodoMix1/TodoMix1';
-import todoList1 from './TodoMix1/TodoReducer1'
-import todoVisibilityFilter1 from './TodoMix1/TodoVisibilityFilterReducer1'
+import { TodoMix1 } from './TodoMix/TodoMix1';
+import { todoList1 } from './Reducer/TodoReducer'
+import { todoVisibilityFilter1 } from './Reducer/TodoVisibilityFilterReducer'
 
-import { TodoMix2 } from './TodoMix2/TodoMix2';
-import { todoList2 } from './TodoMix2/TodoReducer2'
-import { todoVisibilityFilter2 } from './TodoMix2/TodoReducer2'
+import { TodoMix2 } from './TodoMix/TodoMix2';
+import { todoList2 } from './Reducer/TodoReducer'
+import { todoVisibilityFilter2 } from './Reducer/TodoVisibilityFilterReducer'
 
 import './index.css';
 
