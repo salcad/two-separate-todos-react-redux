@@ -8,9 +8,9 @@ import { Link } from '../TodoShared/TodoShared'
 import { getVisibleTodos } from '../TodoShared/TodoShared'
 import { VisibilityFilters } from '../TodoShared/TodoShared'
 
-import { addTodo } from './TodoReducer2'
-import { toggleTodo } from './TodoReducer2'
-import { setVisibilityFilter } from './TodoReducer2'
+import { addTodo2 } from '../Reducer/TodoReducer'
+import { toggleTodo2 } from '../Reducer/TodoReducer'
+import { setVisibilityFilter2 } from '../Reducer/TodoVisibilityFilterReducer'
 
 
 export const TodoMix2 = () => {
@@ -28,7 +28,7 @@ const mapStateToPropsLink = (state, ownProps) => ({
 })
 
 const mapDispatchToPropsLink = (dispatch, ownProps) => ({
-  onClick: () => dispatch(setVisibilityFilter(ownProps.filter))
+  onClick: () => dispatch(setVisibilityFilter2(ownProps.filter))
 })
 
 const ConLink = connect(mapStateToPropsLink, mapDispatchToPropsLink)(Link);
@@ -53,10 +53,10 @@ const mapStateToPropsTodoList = state => ({
 })
 
 const mapDispatchToPropsTodoList = dispatch => ({
-  toggleTodo: id => dispatch(toggleTodo(id))
+  toggleTodo: id => dispatch(toggleTodo2(id))
 })
 
-const ConTodoList = connect(mapStateToPropsTodoList, 
+const ConTodoList = connect(mapStateToPropsTodoList,
   mapDispatchToPropsTodoList)(TodoList);
 
 
@@ -66,11 +66,11 @@ class NewTodoItem extends React.Component {
       super(props);
       this.onSubmit = this.onSubmit.bind(this);
     }
-  
+
     componentDidMount(){
       ReactDOM.findDOMNode(this.refs.itemName).focus();
     }
-  
+
     render(){
       return (
       <form onSubmit={this.onSubmit}>
@@ -78,15 +78,15 @@ class NewTodoItem extends React.Component {
         <input type="submit" value="Submit" />
       </form>);
     }
-  
+
     onSubmit(event){
       event.preventDefault();
       var input = ReactDOM.findDOMNode(this.refs.itemName)
       var newItem = input.value;
-      this.props.dispatch(addTodo(newItem))
+      this.props.dispatch(addTodo2(newItem))
       input.value = '';
     }
-    
+
  }
 
 const ConNewTodoItem = connect()(NewTodoItem);

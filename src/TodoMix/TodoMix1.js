@@ -8,9 +8,9 @@ import { Link } from '../TodoShared/TodoShared'
 import { getVisibleTodos } from '../TodoShared/TodoShared'
 import { VisibilityFilters } from '../TodoShared/TodoShared'
 
-import { addTodo } from './TodoReducer1'
-import { toggleTodo } from './TodoReducer1'
-import { setVisibilityFilter } from './TodoVisibilityFilterReducer1'
+import { addTodo1 } from '../Reducer/TodoReducer'
+import { toggleTodo1 } from '../Reducer/TodoReducer'
+import { setVisibilityFilter1 } from '../Reducer/TodoVisibilityFilterReducer'
 
 export const TodoMix1 = () => {
   return(
@@ -27,7 +27,7 @@ const mapStateToPropsLink = (state, ownProps) => ({
 })
 
 const mapDispatchToPropsLink = (dispatch, ownProps) => ({
-  onClick: () => dispatch(setVisibilityFilter(ownProps.filter))
+  onClick: () => dispatch(setVisibilityFilter1(ownProps.filter))
 })
 
 const ConLink = connect(mapStateToPropsLink, mapDispatchToPropsLink)(Link);
@@ -52,7 +52,7 @@ const mapStateToPropsTodoList = state => ({
 })
 
 const mapDispatchToPropsTodoList = {
-  toggleTodo
+  toggleTodo: toggleTodo1
 }
 
 const ConTodoList = connect(mapStateToPropsTodoList,
@@ -81,7 +81,7 @@ class NewTodoItem extends React.Component {
       event.preventDefault();
       var input = ReactDOM.findDOMNode(this.refs.itemName)
       var newItem = input.value;
-      this.props.dispatch(addTodo(newItem))
+      this.props.dispatch(addTodo1(newItem))
       input.value = '';
     }
 
