@@ -1,16 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { connect } from 'react-redux'
 import '../Todo.css';
 
-import { TodoList } from '../TodoShared/TodoShared'
-import { Link } from '../TodoShared/TodoShared'
-import { getVisibleTodos } from '../TodoShared/TodoShared'
-import { VisibilityFilters } from '../TodoShared/TodoShared'
+import { TodoList, newTodoItem2 } from '../Components/TodoShared'
+import { Link } from '../Components/TodoShared'
+import { getVisibleTodos } from '../Components/TodoShared'
+import { VisibilityFilters } from '../Components/TodoShared'
 
-import { addTodo2 } from '../Reducer/TodoReducer'
-import { toggleTodo2 } from '../Reducer/TodoReducer'
-import { setVisibilityFilter2 } from '../Reducer/TodoVisibilityFilterReducer'
+import { toggleTodo2 } from '../Redux/TodoReducer'
+import { setVisibilityFilter2 } from '../Redux/TodoVisibilityFilterReducer'
 
 
 export const TodoMix2 = () => {
@@ -59,35 +57,5 @@ const mapDispatchToPropsTodoList = dispatch => ({
 const ConTodoList = connect(mapStateToPropsTodoList,
   mapDispatchToPropsTodoList)(TodoList);
 
-
-class NewTodoItem extends React.Component {
-
-    constructor(props){
-      super(props);
-      this.onSubmit = this.onSubmit.bind(this);
-    }
-
-    componentDidMount(){
-      ReactDOM.findDOMNode(this.refs.itemName).focus();
-    }
-
-    render(){
-      return (
-      <form onSubmit={this.onSubmit}>
-        <input ref="itemName" type="text" />
-        <input type="submit" value="Submit" />
-      </form>);
-    }
-
-    onSubmit(event){
-      event.preventDefault();
-      var input = ReactDOM.findDOMNode(this.refs.itemName)
-      var newItem = input.value;
-      this.props.dispatch(addTodo2(newItem))
-      input.value = '';
-    }
-
- }
-
-const ConNewTodoItem = connect()(NewTodoItem);
+const ConNewTodoItem = connect()(newTodoItem2);
 

@@ -1,5 +1,5 @@
 import {createAction} from "redux-actions";
-import {VisibilityFilters} from "../TodoShared/TodoShared";
+import {VisibilityFilters} from "../Components/TodoShared";
 import typeToReducer from "type-to-reducer";
 
 const SET_VISIBILITY_FILTER1 = '[todo1] SET_VISIBILITY_FILTER';
