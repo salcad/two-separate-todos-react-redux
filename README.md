@@ -1,6 +1,6 @@
 
 
-## How to make 2 identical components with each having different separate reducer.
+## How to make identical components with each having different separate reducer.
 
 ## Quick start
 
